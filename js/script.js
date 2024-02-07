@@ -33,7 +33,6 @@ document.querySelector("#container").style.display = "flex";
 document.querySelector("#play").addEventListener("click", function() {
     //mi salvo una const per prendere il valore dell'elemento select
     const difficultyLevel = selectElement.value;
-    console.log(difficultyLevel);
 
     // Pulisco la griglia
     gridElement.innerHTML = "";
@@ -82,7 +81,6 @@ document.querySelector("#play").addEventListener("click", function() {
         newElement.addEventListener("click", function() {
             //con this seleziono lo square e aggiungo o tolgo la class active
             this.classList.toggle("active");
-            console.log(this.innerText);
         });
         
         gridElement.append(newElement);
