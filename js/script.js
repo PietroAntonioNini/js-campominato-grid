@@ -27,33 +27,64 @@ selectElement.innerHTML = `
 //aggiungo la select a sinistra del titolo
 document.querySelector(".container-fluid").prepend(selectElement);
 
+//mostro la griglia
+document.querySelector("#container").style.display = "flex";
 
 document.querySelector("#play").addEventListener("click", function() {
-
-    document.querySelector(".container").style.display = "flex"; // Mostra la griglia
-
     //mi salvo una const per prendere il valore dell'elemento select
     const difficultyLevel = selectElement.value;
     console.log(difficultyLevel);
 
-    // griglia 10x10
-    for(let i = 0; i < 100; i++) {
-        
+    // Pulisco la griglia
+    gridElement.innerHTML = "";
+
+    //elimino le classi del container
+    document.querySelector("#container").className = "";
+
+    // Determino la dimensione della griglia in base alla difficoltà
+    let gridSize;
+    switch(difficultyLevel) {
+        case '1':
+            gridSize = 100; // 10x10
+            break;
+        case '2':
+            gridSize = 81; // 9x9
+            break;
+        case '3':
+            gridSize = 49; // 7x7
+            break;
+        default:
+            console.log('Difficoltà non supportata');
+            return;
+    }
+
+    // creo la griglia
+    for(let i = 1; i <= gridSize; i++) {
         // creo un elemento, gli metto la classe "square" e lo aggiungo nella griglia
         const newElement = document.createElement("div");
         newElement.classList.add("square");
-        newElement.innerText = orderNumbersArray[i];
+
+        //in base alla difficoltà visualizzo una griglia diversa tramite le classi container
+        if(difficultyLevel == "1") {
+            document.querySelector("#container").classList.add("container")
+
+        } else if(difficultyLevel == "2") {
+            document.querySelector("#container").classList.add("container-second")
+
+        } else {
+            document.querySelector("#container").classList.add("container-third")
+
+        }
+        
+        newElement.innerText = i;
         
         //aggiungo un event listener ad ogni quadrato che aggiungo
         newElement.addEventListener("click", function() {
-
             //con this seleziono lo square e aggiungo o tolgo la class active
             this.classList.toggle("active");
-
             console.log(this.innerText);
         });
         
         gridElement.append(newElement);
     }
-
-})
+});

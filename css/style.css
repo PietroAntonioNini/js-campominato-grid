@@ -17,6 +17,20 @@ body {
     padding: 200px 0;
 }
 
+.container-second {
+    max-width: 900px;
+
+    margin: 0 auto;
+    padding: 200px 0;
+}
+
+.container-third {
+    max-width: 700px;
+
+    margin: 0 auto;
+    padding: 200px 0;
+}
+
 #grid {
     display: flex;
     flex-flow: row wrap;
